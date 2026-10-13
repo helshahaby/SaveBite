@@ -1,0 +1,23 @@
+class: PantryItem
+table: pantry_item
+fields:
+  userId: UuidValue
+  name: String
+  category: FoodCategory
+  quantity: double
+  unit: String
+  storageType: StorageType
+  purchaseDate: DateTime
+  expirationDate: DateTime
+  cost: double?
+  notes: String?
+  status: ItemStatus
+  consumedAt: DateTime?
+  wastedAt: DateTime?
+  createdAt: DateTime, default=now
+  updatedAt: DateTime, default=now
+indexes:
+  pantry_user_status_idx:
+    fields: userId, status
+  pantry_expiration_idx:
+    fields: expirationDate

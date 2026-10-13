@@ -1,0 +1,12 @@
+class: MealSuggestion
+fields:
+  id: String
+  title: String
+  description: String
+  prepTimeMinutes: int
+  difficulty: String
+  ingredientsUsed: List<String>
+  missingIngredients: List<String>
+  matchScore: double
+  instructions: List<String>
+  category: String

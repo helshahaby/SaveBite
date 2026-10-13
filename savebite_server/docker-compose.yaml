@@ -1,0 +1,44 @@
+services:
+  # Development services
+  postgres:
+    image: ghcr.io/serverpod/postgres:16
+    ports:
+      - "8090:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: savebite
+      POSTGRES_PASSWORD: "Km6Xvfh-Uuoe3jQgWE0_2yXdv-LzMhpD"
+    volumes:
+      - savebite_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6.2.6
+    ports:
+      - "8091:6379"
+    command: redis-server --requirepass "alMiFTnOqI1BW8wn4KWODida3N1BPiRc"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
+  # Test services
+  postgres_test:
+    image: ghcr.io/serverpod/postgres:16
+    ports:
+      - "9090:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: savebite_test
+      POSTGRES_PASSWORD: "xp7-g9gm4_2AdbfY6U4hkWrl-RGlOleZ"
+    volumes:
+      - savebite_test_data:/var/lib/postgresql/data
+
+  redis_test:
+    image: redis:6.2.6
+    ports:
+      - "9091:6379"
+    command: redis-server --requirepass "tfOjG2IDqVLcIq3ileyDUfuR4rdcUZ9z"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
+volumes:
+  savebite_data:
+  savebite_test_data:

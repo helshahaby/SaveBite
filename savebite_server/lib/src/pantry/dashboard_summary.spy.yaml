@@ -1,0 +1,11 @@
+class: DashboardSummary
+fields:
+  totalItemsTracked: int
+  itemsExpiringSoon: int
+  itemsExpired: int
+  itemsConsumed: int
+  itemsWasted: int
+  estimatedMoneySaved: double
+  estimatedMoneyWasted: double
+  co2AvoidedKg: double
+  useFirstItems: List<PantryItem>

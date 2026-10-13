@@ -1,0 +1,25 @@
+emailIdp:
+  - login:
+  - startRegistration:
+  - verifyRegistrationCode:
+  - finishRegistration:
+  - startPasswordReset:
+  - verifyPasswordResetCode:
+  - finishPasswordReset:
+  - hasAccount:
+jwtRefresh:
+  - refreshAccessToken:
+greeting:
+  - hello:
+pantry:
+  - getPantryItems:
+  - addPantryItem:
+  - updatePantryItem:
+  - markConsumed:
+  - markWasted:
+  - deletePantryItem:
+  - getDashboardSummary:
+  - getMealSuggestions:
+user:
+  - getMyProfile:
+  - completeOnboarding:

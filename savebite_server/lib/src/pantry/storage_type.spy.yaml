@@ -1,0 +1,5 @@
+enum: StorageType
+values:
+  - fridge
+  - freezer
+  - pantry

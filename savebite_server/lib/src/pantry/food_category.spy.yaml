@@ -1,0 +1,10 @@
+enum: FoodCategory
+values:
+  - produce
+  - dairy
+  - bakery
+  - meat
+  - pantry
+  - meals
+  - drinks
+  - other

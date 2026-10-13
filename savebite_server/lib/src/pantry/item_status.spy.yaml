@@ -1,0 +1,5 @@
+enum: ItemStatus
+values:
+  - active
+  - consumed
+  - wasted
