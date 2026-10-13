@@ -45,3 +45,33 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials/
+
+# Local configuration and diagnostics
+.mcp.json
+serverpod-error.txt
+devtools_options.yaml
+*.log
+
+# Flutter / Dart generated files
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+
+# IDE and OS files
+.idea/
+.DS_Store
+Thumbs.db
+
+

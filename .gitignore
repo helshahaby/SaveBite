@@ -1,19 +1,37 @@
-# Files and directories created by pub
-.dart_tool/
-.packages
 
-# Pubspec overrides
-pubspec_overrides.yaml
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+**/secrets/
+**/credentials/
+*.pem
+*.key
 
-# Agents
-.dart_skills/
-.agents/
-.claude/
-.gemini/
-.cursor/
-.vscode/mcp.json
-.codex/
+# Local configuration and diagnostics
 .mcp.json
+serverpod-error.txt
+devtools_options.yaml
 
-# Serverpod Cloud CLI
-.scloud/
+# Dart and Flutter generated files
+.dart_tool/
+**/.dart_tool/
+build/
+**/build/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# IDE and operating system files
+.idea/
+.vscode/mcp.json
+.DS_Store
+Thumbs.db
+
+
+
+# Local AI coding tools and development skills
+.claude/
+.dart_skills/

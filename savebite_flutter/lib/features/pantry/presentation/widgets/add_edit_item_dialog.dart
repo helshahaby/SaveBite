@@ -15,7 +15,8 @@ class AddEditItemDialog extends StatefulWidget {
     required DateTime expirationDate,
     double? cost,
     String? notes,
-  }) onSave;
+  })
+  onSave;
 
   const AddEditItemDialog({
     super.key,
@@ -41,7 +42,18 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
   late DateTime _expirationDate;
   bool _isSaving = false;
 
-  final _commonUnits = ['pcs', 'g', 'kg', 'liter', 'ml', 'pack', 'tub', 'can', 'loaf', 'bag'];
+  final _commonUnits = [
+    'pcs',
+    'g',
+    'kg',
+    'liter',
+    'ml',
+    'pack',
+    'tub',
+    'can',
+    'loaf',
+    'bag',
+  ];
 
   @override
   void initState() {
@@ -60,10 +72,12 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
 
     _category = item?.category ?? FoodCategory.produce;
     _storageType = item?.storageType ?? StorageType.fridge;
-    _expirationDate = item?.expirationDate ?? DateTime.now().add(const Duration(days: 5));
+    _expirationDate =
+        item?.expirationDate ?? DateTime.now().add(const Duration(days: 5));
   }
 
-  String _formatNum(double n) => n == n.roundToDouble() ? n.toInt().toString() : n.toString();
+  String _formatNum(double n) =>
+      n == n.roundToDouble() ? n.toInt().toString() : n.toString();
 
   @override
   void dispose() {
@@ -105,7 +119,9 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
       name: _nameController.text.trim(),
       category: _category,
       quantity: double.parse(_quantityController.text.trim()),
-      unit: _unitController.text.trim().isEmpty ? 'pcs' : _unitController.text.trim(),
+      unit: _unitController.text.trim().isEmpty
+          ? 'pcs'
+          : _unitController.text.trim(),
       storageType: _storageType,
       expirationDate: _expirationDate,
       cost: costVal,
@@ -183,7 +199,10 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
                             value: cat,
                             child: Row(
                               children: [
-                                Icon(UrgencyHelper.getCategoryIcon(cat), size: 18),
+                                Icon(
+                                  UrgencyHelper.getCategoryIcon(cat),
+                                  size: 18,
+                                ),
                                 const SizedBox(width: 8),
                                 Text(UrgencyHelper.getCategoryName(cat)),
                               ],
@@ -208,7 +227,10 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
                             value: st,
                             child: Row(
                               children: [
-                                Icon(UrgencyHelper.getStorageIcon(st), size: 18),
+                                Icon(
+                                  UrgencyHelper.getStorageIcon(st),
+                                  size: 18,
+                                ),
                                 const SizedBox(width: 8),
                                 Text(UrgencyHelper.getStorageName(st)),
                               ],
@@ -231,7 +253,9 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
                       flex: 2,
                       child: TextFormField(
                         controller: _quantityController,
-                        keyboardType: const TextInputBorder(TextInputType.numberWithOptions(decimal: true)),
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                        ),
                         decoration: const InputDecoration(
                           labelText: 'Quantity *',
                           prefixIcon: Icon(Icons.scale_outlined),
@@ -249,7 +273,8 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
                     Expanded(
                       flex: 3,
                       child: DropdownButtonFormField<String>(
-                        initialValue: _commonUnits.contains(_unitController.text)
+                        initialValue:
+                            _commonUnits.contains(_unitController.text)
                             ? _unitController.text
                             : 'pcs',
                         decoration: const InputDecoration(
@@ -279,7 +304,10 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
                   onTap: _pickDate,
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: AppTheme.borderLight),
@@ -290,15 +318,26 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.calendar_today_outlined, size: 20, color: AppTheme.primaryGreen),
+                            const Icon(
+                              Icons.calendar_today_outlined,
+                              size: 20,
+                              color: AppTheme.primaryGreen,
+                            ),
                             const SizedBox(width: 10),
-                            Text(dateStr, style: const TextStyle(fontWeight: FontWeight.w600)),
+                            Text(
+                              dateStr,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                           ],
                         ),
                         Text(
                           UrgencyHelper.getUrgencyLabel(_expirationDate),
                           style: TextStyle(
-                            color: UrgencyHelper.getUrgencyColor(_expirationDate),
+                            color: UrgencyHelper.getUrgencyColor(
+                              _expirationDate,
+                            ),
                             fontWeight: FontWeight.w700,
                             fontSize: 12,
                           ),
@@ -329,7 +368,9 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
                     Expanded(
                       child: TextFormField(
                         controller: _costController,
-                        keyboardType: const TextInputBorder(TextInputType.numberWithOptions(decimal: true)),
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                        ),
                         decoration: const InputDecoration(
                           labelText: 'Estimated Cost (\$)',
                           prefixText: '\$ ',
@@ -361,7 +402,10 @@ class _AddEditItemDialogState extends State<AddEditItemDialog> {
                         ? const SizedBox(
                             height: 20,
                             width: 20,
-                            child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
                           )
                         : Text(isEdit ? 'Save Changes' : 'Add to Pantry'),
                   ),

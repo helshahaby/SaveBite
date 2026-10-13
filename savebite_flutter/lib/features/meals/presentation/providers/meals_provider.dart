@@ -1,3 +1,4 @@
+import 'package:serverpod_auth_idp_flutter/serverpod_auth_idp_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:savebite_client/savebite_client.dart';
 import '../../../../client.dart';

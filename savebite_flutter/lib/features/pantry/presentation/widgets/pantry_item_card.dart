@@ -22,9 +22,10 @@ class PantryItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final urgency = UrgencyHelper.getUrgency(item.expirationDate);
     final urgencyColor = UrgencyHelper.getUrgencyColor(item.expirationDate);
-    final urgencyBg = UrgencyHelper.getUrgencyBackgroundColor(item.expirationDate);
+    final urgencyBg = UrgencyHelper.getUrgencyBackgroundColor(
+      item.expirationDate,
+    );
     final urgencyLabel = UrgencyHelper.getUrgencyLabel(item.expirationDate);
     final categoryIcon = UrgencyHelper.getCategoryIcon(item.category);
     final storageName = UrgencyHelper.getStorageName(item.storageType);
@@ -68,7 +69,8 @@ class PantryItemCard extends StatelessWidget {
                           Expanded(
                             child: Text(
                               item.name,
-                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(
                                     fontWeight: FontWeight.w700,
                                   ),
                               maxLines: 1,
@@ -84,7 +86,9 @@ class PantryItemCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: urgencyBg,
                               borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: urgencyColor.withValues(alpha: 0.3)),
+                              border: Border.all(
+                                color: urgencyColor.withValues(alpha: 0.3),
+                              ),
                             ),
                             child: Text(
                               urgencyLabel,
@@ -116,7 +120,11 @@ class PantryItemCard extends StatelessWidget {
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(storageIcon, size: 14, color: AppTheme.textMuted),
+                              Icon(
+                                storageIcon,
+                                size: 14,
+                                color: AppTheme.textMuted,
+                              ),
                               const SizedBox(width: 4),
                               Text(
                                 storageName,
@@ -167,14 +175,25 @@ class PantryItemCard extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: onConsumed,
-                    icon: const Icon(Icons.check_circle_outline, size: 18, color: AppTheme.freshEmerald),
+                    icon: const Icon(
+                      Icons.check_circle_outline,
+                      size: 18,
+                      color: AppTheme.freshEmerald,
+                    ),
                     label: const Text(
                       'Used / Consumed',
-                      style: TextStyle(color: AppTheme.freshEmerald, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        color: AppTheme.freshEmerald,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: AppTheme.freshEmerald.withValues(alpha: 0.3)),
-                      backgroundColor: AppTheme.freshEmeraldLight.withValues(alpha: 0.4),
+                      side: BorderSide(
+                        color: AppTheme.freshEmerald.withValues(alpha: 0.3),
+                      ),
+                      backgroundColor: AppTheme.freshEmeraldLight.withValues(
+                        alpha: 0.4,
+                      ),
                       padding: const EdgeInsets.symmetric(vertical: 8),
                     ),
                   ),
@@ -183,14 +202,25 @@ class PantryItemCard extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: onWasted,
-                    icon: const Icon(Icons.delete_outline, size: 18, color: AppTheme.alertRed),
+                    icon: const Icon(
+                      Icons.delete_outline,
+                      size: 18,
+                      color: AppTheme.alertRed,
+                    ),
                     label: const Text(
                       'Wasted',
-                      style: TextStyle(color: AppTheme.alertRed, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        color: AppTheme.alertRed,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: AppTheme.alertRed.withValues(alpha: 0.3)),
-                      backgroundColor: AppTheme.alertRedLight.withValues(alpha: 0.3),
+                      side: BorderSide(
+                        color: AppTheme.alertRed.withValues(alpha: 0.3),
+                      ),
+                      backgroundColor: AppTheme.alertRedLight.withValues(
+                        alpha: 0.3,
+                      ),
                       padding: const EdgeInsets.symmetric(vertical: 8),
                     ),
                   ),
@@ -216,9 +246,16 @@ class PantryItemCard extends StatelessWidget {
                       value: 'delete',
                       child: Row(
                         children: [
-                          Icon(Icons.delete_forever_outlined, size: 18, color: Colors.red),
+                          Icon(
+                            Icons.delete_forever_outlined,
+                            size: 18,
+                            color: Colors.red,
+                          ),
                           SizedBox(width: 8),
-                          Text('Delete Permanently', style: TextStyle(color: Colors.red)),
+                          Text(
+                            'Delete Permanently',
+                            style: TextStyle(color: Colors.red),
+                          ),
                         ],
                       ),
                     ),

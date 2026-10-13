@@ -1,5 +1,6 @@
+import 'package:flutter_riverpod/legacy.dart';
+import 'package:serverpod_auth_idp_flutter/serverpod_auth_idp_flutter.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:savebite_client/savebite_client.dart';
 
 import '../../../../client.dart';
@@ -49,9 +50,15 @@ class PantryState {
       errorMessage: errorMessage,
       isDemoMode: isDemoMode ?? this.isDemoMode,
       searchQuery: searchQuery ?? this.searchQuery,
-      storageFilter: clearStorageFilter ? null : (storageFilter ?? this.storageFilter),
-      categoryFilter: clearCategoryFilter ? null : (categoryFilter ?? this.categoryFilter),
-      urgencyFilter: clearUrgencyFilter ? null : (urgencyFilter ?? this.urgencyFilter),
+      storageFilter: clearStorageFilter
+          ? null
+          : (storageFilter ?? this.storageFilter),
+      categoryFilter: clearCategoryFilter
+          ? null
+          : (categoryFilter ?? this.categoryFilter),
+      urgencyFilter: clearUrgencyFilter
+          ? null
+          : (urgencyFilter ?? this.urgencyFilter),
       sortBy: sortBy ?? this.sortBy,
     );
   }
@@ -82,9 +89,11 @@ class PantryState {
     if (searchQuery.trim().isNotEmpty) {
       final q = searchQuery.toLowerCase().trim();
       result = result
-          .where((i) =>
-              i.name.toLowerCase().contains(q) ||
-              (i.notes?.toLowerCase().contains(q) ?? false))
+          .where(
+            (i) =>
+                i.name.toLowerCase().contains(q) ||
+                (i.notes?.toLowerCase().contains(q) ?? false),
+          )
           .toList();
     }
 
@@ -101,14 +110,18 @@ class PantryState {
     // Urgency filter
     if (urgencyFilter != null) {
       result = result
-          .where((i) => UrgencyHelper.getUrgency(i.expirationDate) == urgencyFilter)
+          .where(
+            (i) => UrgencyHelper.getUrgency(i.expirationDate) == urgencyFilter,
+          )
           .toList();
     }
 
     // Sorting
     switch (sortBy) {
       case 'name':
-        result.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+        result.sort(
+          (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
+        );
         break;
       case 'created':
         result.sort((a, b) => b.createdAt.compareTo(a.createdAt));
@@ -135,7 +148,7 @@ class PantryState {
 
 class PantryNotifier extends StateNotifier<PantryState> {
   PantryNotifier()
-      : super(PantryState(items: SamplePantryData.getInitialSampleItems())) {
+    : super(PantryState(items: SamplePantryData.getInitialSampleItems())) {
     loadItems();
     client.auth.authInfoListenable.addListener(_handleAuthChange);
   }
@@ -305,7 +318,9 @@ class PantryNotifier extends StateNotifier<PantryState> {
         cost: cost,
         notes: notes,
       );
-      final updatedList = state.items.map((i) => i.id == itemId ? updated : i).toList();
+      final updatedList = state.items
+          .map((i) => i.id == itemId ? updated : i)
+          .toList();
       state = state.copyWith(items: updatedList);
       return true;
     } catch (e) {
@@ -333,7 +348,9 @@ class PantryNotifier extends StateNotifier<PantryState> {
 
     try {
       final updated = await client.pantry.markConsumed(itemId: itemId);
-      final updatedList = state.items.map((i) => i.id == itemId ? updated : i).toList();
+      final updatedList = state.items
+          .map((i) => i.id == itemId ? updated : i)
+          .toList();
       state = state.copyWith(items: updatedList);
     } catch (e) {
       state = state.copyWith(errorMessage: 'Failed to mark consumed: $e');
@@ -359,7 +376,9 @@ class PantryNotifier extends StateNotifier<PantryState> {
 
     try {
       final updated = await client.pantry.markWasted(itemId: itemId);
-      final updatedList = state.items.map((i) => i.id == itemId ? updated : i).toList();
+      final updatedList = state.items
+          .map((i) => i.id == itemId ? updated : i)
+          .toList();
       state = state.copyWith(items: updatedList);
     } catch (e) {
       state = state.copyWith(errorMessage: 'Failed to mark wasted: $e');
@@ -385,7 +404,8 @@ class PantryNotifier extends StateNotifier<PantryState> {
   }
 }
 
-final pantryProvider =
-    StateNotifierProvider<PantryNotifier, PantryState>((ref) {
+final pantryProvider = StateNotifierProvider<PantryNotifier, PantryState>((
+  ref,
+) {
   return PantryNotifier();
 });
